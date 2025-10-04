@@ -1,0 +1,35 @@
+Project Workflow:
+
+1. Data Ingestion & Preprocessing:
+
+  ~ Developed a Python script to split a single 5 GB JSON file containing ~7 million Yelp reviews into 20–25 smaller files.
+  ~ Uploaded these files to Amazon S3 as a staging area, enabling parallel loading into Snowflake for faster performance compared to direct local uploads.
+  ~ Optional: Snowflake internal staging can also be used depending on the environment.
+
+2. Data Transformation in Snowflake:
+
+  ~ Implemented Snowflake functions to convert nested JSON data into tabular format, including handling arrays and multiple categories via lateral split_to_table.
+  ~ Used CTEs, aggregation, and window functions to organize and summarize the data efficiently.
+
+3. Sentiment Analysis:
+
+  ~ Deployed a Python User Defined Function (UDF) in Snowflake using the VADER sentiment library to classify reviews as Positive, Negative, or Neutral.
+  ~ Enhanced text preprocessing with emoji handling, contraction expansion, repeated character reduction, and heuristics like exclamation marks and intensifiers to improve accuracy on short Yelp reviews.
+
+4. Analytical Queries & Business Insights:
+
+  ~ Executed SQL queries to derive key business insights, including:
+        Top business categories by review count.
+        Most-reviewed businesses per city.
+        Top 10 most active reviewers.
+        Percentage of 5-star reviews per business.
+        Temporal trends such as months with highest review activity.
+        Top businesses based on positive sentiment reviews.
+
+5. Outcome & Impact:
+
+  ~ Accelerated data loading by ~80% using parallel ingestion.
+  ~ Enabled sentiment-driven analytics on a 7M-record dataset, providing actionable insights for business strategy, marketing focus, and customer engagement analysis.
+
+
+
